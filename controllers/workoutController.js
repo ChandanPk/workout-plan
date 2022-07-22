@@ -27,7 +27,6 @@ module.exports.addWorkout_post = async (req, res) => {
 // Get single workout
 module.exports.get_workout = async (req, res) => {
     const { id } = req.params
-
     if (!mongoose.Types.ObjectId.isValid(id)) {
         console.log("error occured")
         res.json({ "error": "no such workout" })
@@ -44,9 +43,8 @@ module.exports.get_workout = async (req, res) => {
 // Delete workout
 module.exports.delete_workout = async (req, res) => {
     const { id } = req.params
-    
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        console.log("error occured")
+        console.log("Delete route was hit")
         res.json({ "error": "no such workout" })
         return
     }
@@ -54,9 +52,11 @@ module.exports.delete_workout = async (req, res) => {
         const data = await Workout.findByIdAndDelete({_id: id})
         if(!data){
             res.status(404).json("No such workout found to delete")
+            return
         }
+        res.json({"status": "Deleted succesfully"})
+
     } catch (error) {
-        res.json({"error": error})        
+        res.json({"error": "No workout found"})        
     }
-    
 }
