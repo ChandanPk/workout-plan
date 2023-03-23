@@ -21,7 +21,7 @@ mongoose
   .catch((err) => console.log(err));
 
 // Routes
-app.use("/api/workouts", workoutRoutes);
+app.use("/api/workout", workoutRoutes);
 
 app.get("/", (req, res) => {
   res.send("<h1>Home page</h1>");
