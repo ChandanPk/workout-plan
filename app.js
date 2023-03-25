@@ -2,6 +2,7 @@ import express from "express";
 import { config } from "dotenv";
 import workoutRoutes from "./routes/Workout.js";
 import mongoose from "mongoose";
+import morgan from "morgan";
 
 // cors config
 config();
@@ -21,6 +22,7 @@ mongoose
   .catch((err) => console.log(err));
 
 // Routes
+app.use(morgan(":method :url :status"));
 app.use("/api/workout", workoutRoutes);
 
 app.get("/", (req, res) => {
