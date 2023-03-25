@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
   res.send("<h1>Home page</h1>");
 });
 
-// Spin server
+// Spin up server
 app.listen(4000, () => {
   console.log("Server up and running on port 4000..");
 });
